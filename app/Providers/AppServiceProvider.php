@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-
+    
+   
     /**
      * Bootstrap any application services.
      *
@@ -23,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrap();
+        \URL::forceScheme('https');
+        $this->app['request']->server->set('HTTPS','on');//
     }
 }
